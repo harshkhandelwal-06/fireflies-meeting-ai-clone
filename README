@@ -1,0 +1,914 @@
+# Fireflies Meeting AI Clone
+
+A full-stack meeting intelligence workspace inspired by the Fireflies.ai experience.
+
+The application is designed to help users record meetings, manage a persistent meeting library, view interactive transcripts, generate summaries and action items, store notes, and ask an AI assistant questions about meeting content.
+
+---
+
+## Overview
+
+This project recreates the core meeting-management and post-meeting workflow of a modern meeting assistant.
+
+The application includes:
+
+- Meeting library and dashboard
+- Meeting creation and management
+- Live microphone recording
+- Audio playback
+- Interactive transcripts
+- Speaker labels and timestamps
+- Transcript search
+- Transcript-to-audio seeking
+- AI-generated summaries
+- Topics and decisions
+- Action-item extraction
+- Persistent notes
+- Tasks
+- AskFred AI meeting assistant
+- Optional OpenAI integration
+- Multilingual transcription support
+- Light and dark themes
+- Profile and Settings
+- Notifications
+- Windows desktop application through Electron
+- SQLite persistence
+
+---
+
+# Features
+
+## 1. Home Dashboard
+
+The Home dashboard provides a Fireflies-inspired workspace for accessing meetings and meeting intelligence.
+
+### Includes
+
+- Recent meetings
+- Meeting statistics
+- Quick actions
+- Record a meeting
+- Upload a recording
+- AskFred
+- Take Notes
+- Meeting navigation
+- Profile menu
+- Notifications
+
+---
+
+# 2. Meetings Library
+
+The Meetings section stores previously created meetings.
+
+### Meeting information
+
+Each meeting can contain:
+
+- Title
+- Date
+- Duration
+- Participants
+- Tags
+- Transcript
+- Summary
+- Topics
+- Decisions
+- Action items
+- Recording
+
+### Library functionality
+
+- Search meetings
+- Sort meetings
+- Open meetings
+- Open the complete transcript
+- Delete meetings directly from the library
+- Create new meetings
+- View previous meetings
+
+---
+
+# 3. Meeting Detail View
+
+Opening a meeting provides a dedicated workspace for its content.
+
+### Available sections
+
+- Overview
+- Transcript
+- Tasks
+- Notes
+- AI meeting intelligence
+
+---
+
+# 4. Interactive Transcript
+
+The transcript interface supports timestamped meeting conversations.
+
+### Features
+
+- Speaker labels
+- Timestamps
+- Search within transcript
+- Highlighted search matches
+- Click a transcript line to seek the recording
+- Audio playback
+- Synchronized transcript navigation
+
+The application can work with:
+
+- Imported transcript files
+- Seeded transcript data
+- Browser speech recognition when supported
+- Local Whisper transcription
+- Optional OpenAI transcription
+
+---
+
+# 5. Recording
+
+The Windows application supports microphone recording using the browser/Electron media APIs.
+
+### Recording workflow
+
+1. Start a meeting
+2. Grant microphone permission
+3. Record audio
+4. Pause/resume recording
+5. Stop and save
+6. Store the recording
+7. Generate or attach transcript data
+8. Open the saved meeting
+
+Recordings are stored in the application's user-data directory rather than inside the source repository.
+
+---
+
+# 6. Audio Playback
+
+Saved meetings can contain an audio recording.
+
+The meeting page provides a native audio player with:
+
+- Play/pause
+- Seek bar
+- Current playback position
+- Duration
+- Transcript synchronization
+
+Clicking a transcript segment can move playback to the corresponding timestamp.
+
+---
+
+# 7. Multilingual Transcription
+
+The application supports multiple transcription languages.
+
+Supported behavior depends on the transcription engine being used.
+
+### Transcription options
+
+- Browser Speech Recognition when available
+- Local Whisper transcription
+- Optional OpenAI transcription
+
+The selected transcription language can be configured from Settings.
+
+---
+
+# 8. AskFred AI Assistant
+
+AskFred is the meeting-aware AI assistant.
+
+It can be used to ask questions about saved meeting information.
+
+### Example questions
+
+```text
+What decisions were made in this meeting?
+
+What are the open action items?
+
+Who is responsible for the next steps?
+
+Summarize the main discussion.
+
+What risks were mentioned?
+
+What should I follow up on?
+```
+
+AskFred is designed to use meeting context rather than generating unrelated responses.
+
+---
+
+# 9. AI Configuration
+
+The application supports two AI modes.
+
+## Without an API key
+
+The application uses grounded meeting-memory retrieval and deterministic meeting intelligence.
+
+This allows the application to remain usable without external AI credentials.
+
+## With an OpenAI API key
+
+An OpenAI API key can be configured through:
+
+```text
+Profile
+→ Settings
+→ Meeting AI
+```
+
+When configured, OpenAI can be used for stronger:
+
+- AskFred responses
+- Meeting summaries
+- Meeting analysis
+- Note summaries
+- Transcript processing
+
+The API key should never be committed to GitHub.
+
+---
+
+# 10. Notes
+
+The application includes a dedicated Notes workspace.
+
+### Notes functionality
+
+- Create notes
+- Edit notes
+- Save notes
+- Delete notes
+- Persist notes
+- Associate notes with meetings where applicable
+- Summarize notes with AI
+
+Notes are stored separately from the meeting transcript so they can also be used as standalone workspace content.
+
+---
+
+# 11. Tasks and Action Items
+
+Meeting action items can be converted into persistent tasks.
+
+### Task functionality
+
+- Create tasks
+- Assign owners
+- Add due dates
+- Mark tasks as completed
+- Delete tasks
+- View meeting-related tasks
+
+---
+
+# 12. Notifications
+
+The application includes a notification panel for workspace events.
+
+Users can:
+
+- View notifications
+- Clear notifications
+- Close the notification panel
+
+---
+
+# 13. Profile
+
+Clicking the profile icon opens the profile menu.
+
+The profile menu provides:
+
+- User name
+- User email
+- Settings access
+
+Settings are intentionally accessed through the profile menu rather than through a separate control-center interface.
+
+---
+
+# 14. Settings
+
+The Settings section provides application configuration.
+
+### Includes
+
+- Appearance
+- Light mode
+- Dark mode
+- Transcription language
+- Meeting preferences
+- AI configuration
+- OpenAI API key configuration
+- Permission-related options
+
+---
+
+# 15. Meeting CRUD
+
+Meetings support full CRUD workflows.
+
+### Create
+
+A meeting can be created through:
+
+- Meeting form
+- Transcript import
+- Recording workflow
+- Uploaded audio/video
+
+### Read
+
+Users can:
+
+- Browse meetings
+- Open meetings
+- View transcripts
+- View summaries
+- View tasks
+- View notes
+- Listen to recordings
+
+### Update
+
+Meeting metadata can be edited, including:
+
+- Title
+- Participants
+- Related content
+
+### Delete
+
+Meetings can be deleted directly from the Meetings library.
+
+---
+
+# 16. Meeting Export / Download
+
+A meeting can be downloaded from the meeting interface.
+
+When available, exported meeting data can contain:
+
+- Meeting metadata
+- Transcript
+- Summary
+- Topics
+- Decisions
+- Action items
+- Notes
+- Recording
+
+The exported content depends on what is available for that meeting.
+
+---
+
+# Technology Stack
+
+## Frontend
+
+- Next.js
+- React
+- TypeScript
+- CSS
+- Lucide Icons
+
+## Backend
+
+- Python
+- FastAPI
+- SQLite
+- REST API
+
+## Desktop
+
+- Electron
+- Chromium
+- Windows packaging
+
+## AI
+
+- Grounded meeting-memory retrieval
+- Local Whisper transcription
+- Optional OpenAI API integration
+
+---
+
+# Architecture
+
+```text
+                    ┌────────────────────┐
+                    │       User         │
+                    └─────────┬──────────┘
+                              │
+                              ▼
+                 ┌────────────────────────┐
+                 │   Next.js / Electron   │
+                 │       Frontend         │
+                 └────────────┬───────────┘
+                              │
+                         REST API
+                              │
+                              ▼
+                 ┌────────────────────────┐
+                 │      FastAPI Backend   │
+                 │         Python         │
+                 └────────────┬───────────┘
+                              │
+                ┌─────────────┼─────────────┐
+                │             │             │
+                ▼             ▼             ▼
+         ┌────────────┐ ┌────────────┐ ┌─────────────┐
+         │   SQLite   │ │ Recordings │ │ AI Services │
+         │  Database  │ │   Storage  │ │             │
+         └────────────┘ └────────────┘ └──────┬──────┘
+                                               │
+                                               ▼
+                                      ┌─────────────────┐
+                                      │   OpenAI API    │
+                                      │     Optional    │
+                                      └─────────────────┘
+```
+
+---
+
+# Project Structure
+
+```text
+fireflies-meeting-ai-clone/
+│
+├── frontend/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   ├── package.json
+│   └── ...
+│
+├── backend/
+│   ├── app/
+│   │   └── main.py
+│   ├── tests/
+│   ├── requirements.txt
+│   └── launcher.py
+│
+├── desktop/
+│   ├── main.cjs
+│   └── preload.cjs
+│
+├── docs/
+│   ├── API.md
+│   ├── ARCHITECTURE.md
+│   ├── VERIFICATION.md
+│   └── EVALUATION_CHECKLIST.md
+│
+├── .env.example
+├── .gitignore
+├── README.md
+├── package.json
+├── build-windows.bat
+└── build-windows.ps1
+```
+
+---
+
+# Database Design
+
+The application uses SQLite for persistent local application data.
+
+## Main entities
+
+### Meetings
+
+Stores:
+
+- Meeting ID
+- Title
+- Date
+- Duration
+- Participants
+- Tags
+- Summary
+- Metadata
+
+### Transcript Segments
+
+Stores:
+
+- Transcript ID
+- Meeting ID
+- Speaker
+- Timestamp
+- Transcript text
+
+### Tasks
+
+Stores:
+
+- Task ID
+- Meeting ID
+- Task text
+- Owner
+- Due date
+- Completion state
+
+### Notes
+
+Stores:
+
+- Note ID
+- Note title
+- Note content
+- Associated meeting where applicable
+- Created/updated timestamps
+
+### Recordings
+
+Meeting recordings are associated with saved meetings and stored separately from the database when applicable.
+
+---
+
+# API Overview
+
+The backend is implemented using FastAPI.
+
+## Health
+
+```text
+GET /api/health
+```
+
+Returns the backend health status.
+
+---
+
+## Meetings
+
+```text
+GET    /api/meetings
+POST   /api/meetings
+GET    /api/meetings/{id}
+PATCH  /api/meetings/{id}
+DELETE /api/meetings/{id}
+```
+
+---
+
+## Transcript
+
+```text
+POST /api/meetings/{id}/transcript
+POST /api/meetings/{id}/transcript/import
+```
+
+---
+
+## Tasks
+
+```text
+POST   /api/meetings/{id}/tasks
+PATCH  /api/tasks/{id}
+DELETE /api/tasks/{id}
+```
+
+---
+
+## AI
+
+```text
+POST /api/ask
+```
+
+Used by AskFred and meeting-aware AI workflows.
+
+---
+
+## Recordings
+
+Meeting recording endpoints are used to save and retrieve audio associated with meetings.
+
+---
+
+# Local Development
+
+## Requirements
+
+Install:
+
+- Node.js
+- npm
+- Python 3.x
+- Git
+
+For Windows desktop packaging, use a Windows machine.
+
+---
+
+# Frontend Setup
+
+Open a terminal in the project root.
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The Next.js development server will start locally.
+
+---
+
+# Backend Setup
+
+Open another terminal.
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+```
+
+The backend will normally be available at:
+
+```text
+http://localhost:8000
+```
+
+FastAPI documentation:
+
+```text
+http://localhost:8000/docs
+```
+
+---
+
+# Windows Build
+
+The project includes an automated Windows build script.
+
+From the project root:
+
+```bat
+build-windows.bat
+```
+
+The script:
+
+1. Installs frontend dependencies
+2. Builds the production frontend
+3. Prepares the backend
+4. Packages the Electron application
+5. Generates the Windows build artifacts
+
+Generated Windows artifacts are placed in:
+
+```text
+release/
+```
+
+The `release/` directory is intentionally excluded from Git.
+
+---
+
+# Using the Windows Application
+
+End users do not need to run `build-windows.bat`.
+
+The batch file is a developer/build tool used to create the Windows application.
+
+Once the application has been packaged, the user can launch the generated Windows executable directly.
+
+The end user does not need:
+
+- Node.js
+- npm
+- Python
+- Git
+- VS Code
+- The build script
+
+to use the packaged application.
+
+---
+
+# Environment Variables
+
+A configuration example is provided in:
+
+```text
+.env.example
+```
+
+Never commit real credentials to GitHub.
+
+Do not place API keys inside:
+
+```text
+.env
+.env.local
+source code
+README.md
+```
+
+For deployment, configure secrets through the deployment platform's environment-variable system.
+
+---
+
+# AI API Key
+
+The OpenAI API key is optional.
+
+For local desktop usage, it can be configured through:
+
+```text
+Profile
+→ Settings
+→ Meeting AI
+```
+
+When no key is configured, the application continues to operate using its grounded fallback AI behavior.
+
+When an OpenAI key is configured, the application can use OpenAI-powered meeting analysis and responses.
+
+---
+
+# Sample Data
+
+The application contains seeded sample meetings so the workspace is immediately usable.
+
+The sample data includes:
+
+- Meeting titles
+- Dates
+- Participants
+- Transcripts
+- Summaries
+- Topics
+- Decisions
+- Action items
+
+This allows the application's core workflows to be demonstrated immediately after setup.
+
+---
+
+# Testing
+
+Backend tests can be executed using:
+
+```bash
+cd backend
+pytest
+```
+
+Additional verification information is available in:
+
+```text
+docs/VERIFICATION.md
+```
+
+---
+
+# Security
+
+Never commit credentials or secrets to the repository.
+
+The repository should only contain examples such as:
+
+```text
+.env.example
+```
+
+Real API keys should be stored locally or through deployment environment variables.
+
+---
+
+# Scope and Assumptions
+
+This project focuses on the meeting-management and post-meeting intelligence workflow.
+
+The assignment allows seeded, mocked, or LLM-generated meeting intelligence rather than requiring production-grade real-time speech-to-text.
+
+Therefore the implementation supports:
+
+- Seeded meetings
+- Imported transcript data
+- Browser speech recognition when available
+- Local Whisper transcription
+- Optional OpenAI-powered transcription and analysis
+
+The following features are outside the primary project scope:
+
+- Production-grade authentication
+- Real-time Zoom/Google Meet bot joining
+- CRM integrations
+- Enterprise team collaboration
+- Production multi-user authorization
+
+These areas can be added in future versions.
+
+---
+
+# Assignment Alignment
+
+The project addresses the major assignment requirements:
+
+- Meetings library
+- Search and sorting
+- Interactive transcript
+- Speaker labels
+- Timestamps
+- Audio player
+- Transcript seeking
+- Transcript search
+- AI summaries
+- Action items
+- Meeting CRUD
+- Persistent SQLite storage
+- Notes
+- Tasks
+- Forms and dialogs
+- Notifications
+- Settings
+- Fireflies-inspired interface
+- API/backend separation
+- Documentation
+
+---
+
+# Documentation
+
+Additional project documentation is available in:
+
+```text
+docs/API.md
+docs/ARCHITECTURE.md
+docs/VERIFICATION.md
+docs/EVALUATION_CHECKLIST.md
+```
+
+---
+
+# Deployment
+
+The project can be deployed as:
+
+### Frontend
+
+Next.js frontend can be deployed using platforms such as:
+
+- Vercel
+- Netlify
+
+### Backend
+
+FastAPI backend can be deployed using platforms such as:
+
+- Railway
+- Render
+- other Python-compatible cloud services
+
+### Desktop
+
+The Windows application can be packaged using Electron on Windows.
+
+---
+
+# Repository
+
+GitHub:
+
+https://github.com/harshkhandelwal-06/fireflies-meeting-ai-clone
+
+---
+
+# Project Status
+
+The project contains:
+
+- Full frontend
+- FastAPI backend
+- SQLite persistence
+- Electron Windows desktop packaging
+- Meeting library
+- Recording workflow
+- Transcript workflow
+- AI meeting assistance
+- Notes
+- Tasks
+- Settings
+- Documentation
+- Seed data
+
+---
+
+# Original Work
+
+This project is an original implementation created for educational and evaluation purposes.
+
+It is inspired by the Fireflies.ai product experience and assignment requirements but does not contain copied Fireflies.ai source code or proprietary implementation.
