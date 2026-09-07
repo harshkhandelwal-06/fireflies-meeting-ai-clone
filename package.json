@@ -1,0 +1,63 @@
+{
+  "name": "fireflies-clone-desktop",
+  "version": "2.4.2",
+  "private": true,
+  "description": "Fireflies Clone Windows desktop application",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "desktop:dev": "electron desktop/main.cjs",
+    "build:windows": "call build-windows.bat",
+    "desktop:build": "electron-builder --win portable nsis --x64"
+  },
+  "devDependencies": {
+    "electron": "^37.2.6",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.firefliesclone.desktop",
+    "productName": "Fireflies Clone",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "desktop/**/*",
+      "frontend/out/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "backend/dist/fireflies-backend.exe",
+        "to": "backend/fireflies-backend.exe"
+      }
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Fireflies-Clone-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "Fireflies-Clone-Portable-${version}.${ext}"
+    }
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

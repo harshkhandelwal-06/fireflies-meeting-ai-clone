@@ -1,0 +1,8 @@
+Fireflies Clone 2.4.2 build fix
+
+Windows builds previously failed during `npm install` with ETARGET because the frontend lockfile contained:
+  micromatch -> picomatch ^2.4.0
+
+No picomatch 2.4.x release exists. micromatch 4.0.8 correctly declares picomatch ^2.3.1. The lockfile is corrected to ^2.3.1 and keeps the resolved 2.3.2 package entry.
+
+This fixes the ETARGET dependency-resolution failure without changing the application code.
