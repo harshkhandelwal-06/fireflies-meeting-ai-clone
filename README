@@ -1,4 +1,4 @@
-# Fireflies Meeting AI Clone
+# # [Fireflies Meeting AI Clone](https://fireflies-meeting-ai-clone.vercel.app)
 
 A full-stack meeting intelligence workspace inspired by the Fireflies.ai experience.
 
@@ -906,6 +906,7 @@ The project contains:
 - Seed data
 
 ---
+*Demo data & storage: The hosted demo uses a shared backend/database for demonstration purposes. The Windows desktop build stores application data locally on the user's machine.
 
 # Original Work
 
